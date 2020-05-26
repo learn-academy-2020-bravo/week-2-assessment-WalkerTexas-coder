@@ -22,16 +22,18 @@
           super(props)
           this.state = {
             moods: ["😃", "😴", "😍", "🥺", "😡", "🤓", "🤪"],
-            currentMood: 0,
+              //indexed
+            currentMood: [0],
             setMood: ""
           }
         }
 
         nextMood = () => {
           if(currentMood === moods.length - 1){
-            this.setState({ currentMood: currentMood = 0 })
+            //indexed
+            this.setState({ currentMood: currentMood = [0]})
           } else {
-            this.setState({ currentMood: currentMood + 1 })
+            this.setState({ currentMood: currentMood + [1] })
           }
         }
 
@@ -41,14 +43,17 @@
 
         render(){
           return(
-            <div>
-              <MoodMeter
-                moodOptions={ this.state.moods[this.state.currentMood] }
-                next={ this.nextMood }
-                setThisMood={ this.setThisMood }
-                set={ this.state.setMood }
-              />
-            </div>
+          // fragment
+            <>
+              <div>
+                <MoodMeter
+                  moodOptions={ this.state.moods[this.state.currentMood] }
+                  next={ this.nextMood }
+                  setThisMood={ this.setThisMood }
+                  set={ this.state.setMood }
+                />
+              </div>
+            </>
           )
         }
       }
@@ -56,9 +61,12 @@
       class Header extends React.Component{
         render(){
           return(
+          //fragment
+          <>
             <div>
               <h1>Welcome to the Mood Meter App</h1>
             </div>
+          </>
           )
         }
       }
@@ -66,6 +74,8 @@
       class MoodMeter extends React.Component{
         render(){
           return(
+          //fragment
+          <>
               <h3>Mood Options:</h3>
               <p style={{fontSize: "40px"}}>{ this.props.moodOptions }</p>
               <button onClick={ }>Click Here For Next Mood Option</button>
@@ -75,6 +85,7 @@
               <button onClick={ this.props.setThisMood }>Yup, this is me right now.</button>
               <h3>My mood:</h3>
               <p style={{fontSize: "40px"}}>{ this.props.set }</p>
+          </>
           )
         }
       }
